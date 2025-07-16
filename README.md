@@ -5,7 +5,7 @@
 A Proxmox-based single-node homelab with basic computational resources —  
 each VM is a self-contained learning project.  
 Minimal setup first, improvements later.  
-Documented so you can rebuild anywhere, anytime.
+Documented so it can be rebuild anywhere, anytime.
 
 ## 🛠️ How It Works
 
@@ -24,7 +24,7 @@ Dive into any topic folder, follow README or docs.
 * This is a learning lab — expect rough edges. 
 ⃤⃟⃤⃟⃤⃟⃤⃟⃤⃟⃤⃟⃤⃟⃤⃟⃤⃟⃤
 * Minimalism prioritized over perfection.
-* Use at your own risk.
+* Use at your own risk, I got these informations from internet.
 
 ---
 
