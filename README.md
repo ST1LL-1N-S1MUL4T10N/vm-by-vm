@@ -1,9 +1,5 @@
 # vm-by-vm ⚙️
 
-.⋅ ☠ ⋅.⋅ ✧ ⋅.⋅ ☠ ⋅.⋅ ✧ ⋅.  
-   ♱ N҉E҉X҉U҉S҉ ♱  
-.⋅ ✧ ⋅.⋅ ☠ ⋅.⋅ ✧ ⋅.⋅ ☠ ⋅.  
-
 ## 🎯 What’s This?
 
 A Proxmox-based single-node homelab with basic computational resources —  
