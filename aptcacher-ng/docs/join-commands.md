@@ -1,3 +1,4 @@
+For clients to join proxy:
 ```
 sudo nano /etc/apt/apt.conf.d/01proxy
 ```
