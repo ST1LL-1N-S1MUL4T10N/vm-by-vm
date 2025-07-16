@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  netbootxyz:
+    image: lscr.io/linuxserver/netbootxyz:latest
+    container_name: netbootxyz
+    environment:
+      - PUID=1000 
+      - PGID=1000 
+      - TZ=Europe/Berlin
+      - PORT_RANGE=30000:30010 
+      - SUBFOLDER=/ 
+    volumes:
+      - /home/YOURHOST/netboot.xyz:/config
+      - /home/YOURHOST/netboot.xyz:/assets 
+    restart: unless-stopped
