@@ -1,0 +1,7 @@
+---
+- name: Shutdown all systems
+  hosts: all
+  become: yes  # run as sudo
+  tasks:
+    - name: Shut down the system
+      command: shutdown now
