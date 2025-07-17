@@ -12,8 +12,10 @@ network:
     eth0:
       dhcp4: no
       addresses:
-        - 192.168.1.100/24
-      gateway4: 192.168.1.1
+        - 192.168.101.100/24
+      routes:
+        - to: 0.0.0.0/0
+          via: 192.168.101.1
       nameservers:
         addresses:
           - 1.1.1.1
