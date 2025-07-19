@@ -1,3 +1,5 @@
+https://sankalppatil12112001.medium.com/bettercap-basics-your-ultimate-guide-to-network-penetration-testing-1d6b087a8f31
+
 # run the tool with:
 ```
 sudo bettercap
