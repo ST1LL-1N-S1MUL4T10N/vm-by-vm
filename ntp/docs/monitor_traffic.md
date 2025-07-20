@@ -1,4 +1,4 @@
-# **capture and save the packets to a pcap file**:
+# **Capture and save the packets to a pcap file**:
 
 ```bash
 sudo tcpdump -i ens18 udp port 123 -vv -w ntp_capture.pcap
