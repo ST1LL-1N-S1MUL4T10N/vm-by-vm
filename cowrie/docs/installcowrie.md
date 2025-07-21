@@ -285,4 +285,3 @@ sudo journalctl -u "user@$(id -u cowrie).service" -f
 
 ---
 
-If you want me to export this into a file or format it differently, just say!
