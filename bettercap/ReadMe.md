@@ -49,8 +49,4 @@ wifi.assoc on
 
 ---
 
-<img width="1568" height="420" alt="bettercap" src="https://github.com/user-attachments/assets/cde69ca9-c893-4047-ba93-30073dad7fd8" />
-
----
-
-<img width="1574" height="395" alt="bettercaprecon" src="https://github.com/user-attachments/assets/4480f777-51e0-4971-88ce-4224fdb06104" />
+<img width="1632" height="810" alt="bettercaprecong" src="https://github.com/user-attachments/assets/13afcf45-e5b4-464b-82c3-56c6649d327c" />
