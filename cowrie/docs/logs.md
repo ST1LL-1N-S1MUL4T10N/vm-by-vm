@@ -1,3 +1,9 @@
+```bash
+sudo journalctl -u "user@$(id -u cowrie).service" -f
+```
+
+---
+
 # From Attacker:
 
 <img width="2381" height="413" alt="honeypotattack" src="https://github.com/user-attachments/assets/4195eac1-889e-47af-b819-65a02c820514" />
