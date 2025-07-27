@@ -1,7 +1,4 @@
 
-
----
-
 ### Step 1: Install NFS server packages
 
 ```bash
@@ -13,7 +10,7 @@ sudo apt install -y nfs-kernel-server
 
 ### Step 2: Prepare your export directory
 
-Let's create a directory to share, e.g., `/home/nfsshare`
+Create a directory to share, e.g., `/home/nfsshare`
 
 ```bash
 sudo mkdir -p /home/nfsshare
@@ -31,15 +28,15 @@ Edit `/etc/exports`:
 sudo nano /etc/exports
 ```
 
-Add this line (sharing `/home/nfsshare` with your network):
+Add this line (sharing `/home/nfsshare` with network):
 
 ```
 /home/nfsshare 172.16.110.0/24(rw,no_root_squash,sync,no_subtree_check)
 ```
 
-* `172.16.110.0/24` assumes your client IPs will be in this subnet.
+* `172.16.110.0/24` assumes client IPs will be in this subnet.
 * `rw` gives read-write access.
-* `no_root_squash` allows root on client to have root access (you can remove this for security).
+* `no_root_squash` allows root on client to have root access (remove this for security).
 * `sync` makes sure writes are committed before reply.
 * `no_subtree_check` disables subtree checking for simplicity.
 
@@ -70,27 +67,12 @@ sudo systemctl enable nfs-kernel-server
 sudo exportfs -v
 ```
 
-You should see your share listed.
+You should see the share listed.
 
 ---
 
-### On the client side (optional, just for info)
 
-On your NFS client, you can mount the share like:
-
-```bash
-sudo apt install -y nfs-common
-sudo mount 172.16.110.213:/home/nfsshare /mnt
-```
-
----
-
-### No firewall stuff needed if you disabled or don't run firewall.
-
----
-
-**That’s the bare minimum.** Let me know if you want me to help with client setup or make it more secure!
-
+**That’s the bare minimum.**
 
 
 
