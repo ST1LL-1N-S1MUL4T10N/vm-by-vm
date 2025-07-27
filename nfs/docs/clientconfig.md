@@ -1,3 +1,15 @@
+#### TLDR: On the client side mount the share:
+
+```bash
+sudo apt install -y nfs-common
+sudo mount 172.16.110.213:/home/nfsshare /mnt
+```
+
+
+
+---
+
+
 
 ## NFS Client Setup Guide
 
@@ -88,8 +100,6 @@ sudo nano /etc/fstab
 sudo mount -a
 ```
 
-If no errors, it’s good to go.
+If errors, read the guide again or ask chatGPT.
 
 ---
-
-**That’s all!** Ready to help if you want to script this or troubleshoot mounts.
