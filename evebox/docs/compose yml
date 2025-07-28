@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+
+  evebox:
+    image: jasonish/evebox:latest
+    restart: unless-stopped
+    ports:
+      - "5636:5636"
+    command: evebox server
