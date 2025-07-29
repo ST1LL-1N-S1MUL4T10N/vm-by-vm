@@ -10,7 +10,12 @@
   cd wazuh-docker/single-node
   ```
 * Generated or provided SSL certificates (optional).
-* Started Wazuh stack:
+ * (Generated):
+```bash
+  docker-compose -f generate-indexer-certs.yml run --rm generator
+  ```
+
+* Start Wazuh stack:
 
   ```bash
   docker-compose up -d
@@ -28,7 +33,15 @@
 
 ### 3. **Configured Wazuh Agent to Collect Suricata Logs**
 
-* Edited `ossec.conf` on Suricata node to add Suricata EVE JSON log:
+
+* On the node running Wazuh Agent, find the config:
+
+```
+/var/ossec/etc/ossec.conf
+```
+
+
+* Edit `ossec.conf` on Suricata node to add Suricata EVE JSON log:
 
   ```xml
   <localfile>
