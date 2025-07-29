@@ -22,3 +22,4 @@ alert udp any any -> $HOME_NET 69 (msg:"SOMEONE IS USING [NETBOOT]"; sid:100008;
 alert tcp any any -> any 514 (msg:"Syslog TCP detected"; sid:100026; rev:1;)
 alert udp any any -> any 514 (msg:"Syslog UDP detected"; sid:100027; rev:1;)
 alert tcp any any -> any 3142 (msg:"aptcacher-ng traffic detected"; sid:100018; rev:1;)
+alert tls any any -> any any (msg:"Self-Signed SSL Cert"; tls.cert.subject; content:"CN=localhost"; sid:200008; rev:1;)
