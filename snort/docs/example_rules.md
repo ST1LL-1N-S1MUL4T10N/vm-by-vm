@@ -20,6 +20,7 @@ alert udp any 67 -> $HOME_NET 68 (msg:"[NET] DHCP Offer Detected"; sid:100004; r
 alert udp any any -> $HOME_NET 69 (msg:"SOMEONE IS USING [NETBOOT]"; sid:100008; rev:1;)
 
 
+alert tcp any any -> any 389 (msg:"[LDAP] Unencrypted LDAP bind"; sid:300021; rev:1;)
 alert tcp any any -> any 4444 (msg:"[BACKDOOR] Reverse shell traffic"; sid:300017; rev:1;)
 alert tcp any any -> any 514 (msg:"Syslog TCP detected"; sid:100026; rev:1;)
 alert udp any any -> any 514 (msg:"Syslog UDP detected"; sid:100027; rev:1;)
