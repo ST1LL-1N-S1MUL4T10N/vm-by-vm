@@ -1,19 +1,19 @@
-version: "3"
-
+version: "3.8"
 services:
   evebox:
     image: jasonish/evebox:latest
+    container_name: evebox
     restart: unless-stopped
     ports:
       - "5636:5636"
-    command: >
-      evebox server
-      --host 0.0.0.0
-      --datastore sqlite
-      --input /var/log/suricata/eve.json
     volumes:
       - /var/log/suricata:/var/log/suricata:ro
       - evebox-data:/var/lib/evebox
-
+    command: >
+      evebox server
+      --host=0.0.0.0
+      --datastore=sqlite
+      --input=/var/log/suricata/eve.json
+      --no-auth
 volumes:
   evebox-data:
