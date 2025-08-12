@@ -1,3 +1,8 @@
+⟦ ssh-keygen → distribute → install hping3 → launch flood → monitor → stop ⟧
+
+☣ AUTHORIZED TARGETS ONLY ☣
+
+☛ Misuse = ⚖ Legal Risk ☚
 
 ---
 
@@ -139,8 +144,26 @@ done < vms.txt
 
 ### Notes
 
-* Using `while read -r` ensures each line is read correctly, even if usernames or IP addresses contain special characters.
-* Including usernames with IP addresses enables management of VMs with different login accounts without modifying the scripts.
-* Ensure SSH keys are properly copied for each `user@ip` entry to enable passwordless access.
+**tcpdump commands for victim and bot**
+
+### Victim (capture incoming SYN flood packets):
+
+```bash
+sudo tcpdump -i eth0 -nn -s 0 -w syn_flood_victim.pcap 'tcp[tcpflags] & tcp-syn != 0 and tcp[tcpflags] & tcp-ack == 0 and dst host <victim-ip>'
+```
+
+---
+
+### Bot (capture outgoing SYN flood packets):
+
+```bash
+sudo tcpdump -i eth0 -nn -s 0 -w syn_flood_bot.pcap 'tcp[tcpflags] & tcp-syn != 0 and tcp[tcpflags] & tcp-ack == 0 and src host <bot-ip> and dst host <victim-ip>'
+```
+
+---
+
+**Replace `<victim-ip>` and `<bot-ip>` with real IPs.**
+
+Stop capture with `Ctrl+C`. Files save for later analysis.
 
 ---
