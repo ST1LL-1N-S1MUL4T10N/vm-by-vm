@@ -121,5 +121,3 @@ The client VM is **isolated from the Internet**. It can only:
 * Send HTTP/HTTPS requests through the Squid proxy
 
 ---
-
-Do you want me to also include an **iptables equivalent version** of this guide for cases where UFW isn’t installed?
