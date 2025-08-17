@@ -149,9 +149,10 @@ Examples:
 proxychains4 nc -vz google.com 443
 proxychains4 sudo apt install nmap
 proxychains4 sudo apt update
+proxychains4 git clone https://github.com/ST1LL-1N-S1MUL4T10N/vm-by-vm.git
 ```
 
-> UDP traffic may not work without additional configuration. Proxychains4 not needed, if /etc/apt/apt.conf.d/95proxies set.
+> UDP traffic may not work without additional configuration. Proxychains4 not needed for updating/installing, if /etc/apt/apt.conf.d/95proxies set.
 
 ---
 
