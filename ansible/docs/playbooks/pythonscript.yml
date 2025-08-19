@@ -1,0 +1,21 @@
+---
+- name: Transfer and execute Python script
+  hosts: all  # Ensure this matches your inventory group name
+  become: yes   # Run tasks with privilege escalation if needed
+
+  tasks:
+    - name: Copy Python script to remote hosts
+      copy:
+        src: /tmp/script.py  # Update with source path on control node
+        dest: /tmp/script.py
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Execute the Python script
+      command: python3 /tmp/script.py
+      register: script_output
+
+    - name: Show script output
+      debug:
+        var: script_output.stdout
