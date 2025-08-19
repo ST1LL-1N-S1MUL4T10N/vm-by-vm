@@ -1,0 +1,17 @@
+---
+- name: Setup log forwarding
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install rsyslog
+      apt:
+        name: rsyslog
+        state: present
+    - name: Configure remote log server
+      lineinfile:
+        path: /etc/rsyslog.conf
+        line: "*.* @@logserver.example.com:514"
+    - name: Restart rsyslog
+      service:
+        name: rsyslog
+        state: restarted
