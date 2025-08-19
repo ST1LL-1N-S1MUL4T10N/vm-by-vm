@@ -1,0 +1,25 @@
+---
+- name: Transfer and execute Bash script
+  hosts: all  # Ensure this matches your inventory group name
+  become: yes   # Run tasks with privilege escalation if needed
+
+  tasks:
+    - name: Copy Bash script to remote hosts
+      copy:
+        src: /tmp/bash.sh   # Update with source path on control node
+        dest: /tmp/bash.sh
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Execute the Bash script
+      command: /bin/bash /tmp/bash.sh
+      register: script_output
+
+    - name: Show script stdout
+      debug:
+        var: script_output.stdout
+
+    - name: Show script stderr (if any)
+      debug:
+        var: script_output.stderr
