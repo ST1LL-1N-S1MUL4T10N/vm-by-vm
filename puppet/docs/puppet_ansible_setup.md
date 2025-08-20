@@ -42,7 +42,7 @@ ssh-keygen
 2. **Copy public key to nodes**
 
 ```bash
-ssh-copy-id puppet@192.168.0.8
+ssh-copy-id puppetclient@192.168.0.8
 ssh-copy-id puppetserver@192.168.0.77
 ```
 
