@@ -10,6 +10,10 @@
 ### Inventory Configuration
 
 ```bash
+sudo apt install ansible
+```
+
+```bash
 sudo mkdir -p /etc/ansible
 ```
 
@@ -21,8 +25,8 @@ Inventory file: `/etc/ansible/hosts`
 
 ```ini
 [puppet_nodes]
-puppet ansible_host=192.168.0.8 ansible_user=puppet ansible_become_pass=sea
-puppetserver ansible_host=192.168.0.77 ansible_user=puppetserver ansible_become_pass=sea
+puppetclient ansible_host=192.168.0.8 ansible_user=puppetclient ansible_become_pass=puppet
+puppetserver ansible_host=192.168.0.77 ansible_user=puppetserver ansible_become_pass=puppet
 ```
 
 ---
@@ -178,7 +182,7 @@ sudo nano /etc/puppet/puppet.conf
 ```ini
 [main]
 certname = puppetclient
-server = puppetmaster
+server = puppetserver
 ```
 
 5. **Save and exit the file.**
