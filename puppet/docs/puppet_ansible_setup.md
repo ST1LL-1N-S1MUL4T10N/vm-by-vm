@@ -10,7 +10,7 @@
 ### Inventory Configuration
 
 ```bash
-sudo apt install ansible
+sudo apt install ansible-core
 ```
 
 ```bash
