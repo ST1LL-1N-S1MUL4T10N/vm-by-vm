@@ -30,6 +30,7 @@ services:
 #    container_name: semaphore
     environment:
       SEMAPHORE_DB_DIALECT: "bolt"
+      SEMAPHORE_ADMIN: "admin"
       SEMAPHORE_ADMIN_PASSWORD: "semaphore"
       SEMAPHORE_ADMIN_NAME: "admin"
       SEMAPHORE_ADMIN_EMAIL: "42nexus@proton.me"
@@ -41,7 +42,7 @@ services:
       SEMAPHORE_LDAP_SEARCH_FILTER: "(&(objectClass=inetOrgPerson)(uid=%s))"
       SEMAPHORE_NON_ADMIN_CAN_CREATE_PROJECT: "yes"
     ports:
-      - "3000:3000"
+      - "3030:3000"
     volumes:
       - semaphore_data:/var/lib/semaphore
     depends_on:
@@ -51,4 +52,3 @@ volumes:
   ldap_data:
   ldap_config:
   semaphore_data:
-  
