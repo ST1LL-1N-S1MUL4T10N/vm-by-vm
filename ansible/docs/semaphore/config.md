@@ -1,3 +1,8 @@
+
+From this: https://github.com/semaphoreui/semaphore/blob/develop/examples/openldap/README.md
+
+---
+
 # Semaphore with OpenLDAP example
 
 1. Start stack by command:
