@@ -1,0 +1,26 @@
+---
+- name: Distribute and install CA certificate
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure directory exists
+      file:
+        path: /usr/local/share/ca-certificates/sea-lan
+        state: directory
+        mode: '0755'
+
+    - name: Copy CA chain to remote host
+      copy:
+        src: ./ca-chain.sea.lan.crt   # local path to your CA chain
+        dest: /usr/local/share/ca-certificates/sea-lan/ca-chain.sea.lan.crt
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Update CA certificates on remote host
+      command: update-ca-certificates
+      register: update_output
+
+    - name: Show update output
+      debug:
+        var: update_output.stdout
