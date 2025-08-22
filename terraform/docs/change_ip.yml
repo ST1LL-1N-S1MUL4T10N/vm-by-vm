@@ -1,0 +1,43 @@
+---
+- name: Configure static IP on remote host
+  hosts: all
+  become: yes
+  vars:
+    network_prefix: "172.16.110"
+    static_last_octet: 151
+    gateway: "{{ network_prefix }}.1"
+    static_ip: "{{ network_prefix }}.{{ static_last_octet }}/24"
+
+  tasks:
+    - name: Backup existing netplan config
+      copy:
+        src: /etc/netplan/50-cloud-init.yaml
+        dest: /etc/netplan/50-cloud-init.yaml.bak
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Configure static IP via netplan
+      copy:
+        dest: /etc/netplan/50-cloud-init.yaml
+        content: |
+          network:
+            version: 2
+            ethernets:
+              ens18:
+                dhcp4: no
+                addresses:
+                  - {{ static_ip }}
+                routes:
+                  - to: 0.0.0.0/0
+                    via: {{ gateway }}
+                nameservers:
+                  addresses:
+                    - 1.1.1.1
+                    - 8.8.8.8
+
+    - name: Apply netplan configuration
+      command: netplan apply
+
+    - name: Reboot the server
+      reboot:
+        reboot_timeout: 300
