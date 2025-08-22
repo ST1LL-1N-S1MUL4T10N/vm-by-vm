@@ -1,0 +1,49 @@
+---
+- name: Configure static network and reboot
+  hosts: all
+  become: yes
+  vars:
+    netplan_file: /etc/netplan/50-cloud-init.yaml
+    interface_name: eth0
+    static_ip: 192.168.0.204/24
+    gateway_ip: 192.168.0.1
+    dns_servers:
+      - 1.1.1.1
+      - 8.8.8.8
+
+  tasks:
+    - name: Backup existing netplan config
+      copy:
+        src: "{{ netplan_file }}"
+        dest: "{{ netplan_file }}.bak"
+        remote_src: yes
+        backup: yes
+
+    - name: Overwrite netplan config with static IP
+      copy:
+        dest: "{{ netplan_file }}"
+        content: |
+          network:
+            version: 2
+            ethernets:
+              {{ interface_name }}:
+                dhcp4: no
+                addresses:
+                  - {{ static_ip }}
+                routes:
+                  - to: 0.0.0.0/0
+                    via: {{ gateway_ip }}
+                nameservers:
+                  addresses:
+                    - {{ dns_servers[0] }}
+                    - {{ dns_servers[1] }}
+
+    - name: Apply netplan configuration
+      command: netplan apply
+
+    - name: Reboot the server
+      reboot:
+        msg: "Reboot initiated by Ansible after network config change"
+        pre_reboot_delay: 5
+        reboot_timeout: 300
+        test_command: whoami
