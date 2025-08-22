@@ -1,0 +1,36 @@
+---
+- name: Configure Chrony to use local NTP server
+  hosts: all
+  become: yes
+
+  vars:
+    ntp_server: "192.168.0.170"   # Replace with your NTP server IP
+
+  tasks:
+    - name: Install chrony
+      apt:
+        name: chrony
+        state: present
+        update_cache: yes
+
+    - name: Comment out existing pool/server lines
+      replace:
+        path: /etc/chrony/chrony.conf
+        regexp: '^(pool|server)\s+.*'
+        replace: '# \g<0>'
+      notify: Restart chrony
+
+    - name: Ensure local NTP server is present
+      lineinfile:
+        path: /etc/chrony/chrony.conf
+        regexp: '^server\s+{{ ntp_server }}\s+iburst'
+        line: "server {{ ntp_server }} iburst"
+        insertafter: '^# Welcome'
+      notify: Restart chrony
+
+  handlers:
+    - name: Restart chrony
+      systemd:
+        name: chrony
+        state: restarted
+        enabled: yes
