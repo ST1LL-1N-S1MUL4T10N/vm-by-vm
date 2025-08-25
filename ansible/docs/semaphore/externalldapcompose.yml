@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # uncomment this section and comment out the mysql section to use postgres instead of mysql
+  #postgres:
+    #restart: unless-stopped
+    #image: postgres:14
+    #hostname: postgres
+    #volumes:
+    #  - semaphore-postgres:/var/lib/postgresql/data
+    #environment:
+    #  POSTGRES_USER: semaphore
+    #  POSTGRES_PASSWORD: semaphore
+    #  POSTGRES_DB: semaphore
+
+  # if you wish to use postgres, comment the mysql service section below
+  mysql:
+    restart: unless-stopped
+    image: mysql:8.0
+    hostname: mysql
+    volumes:
+      - semaphore-mysql:/var/lib/mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: semaphore
+      MYSQL_USER: semaphore
+      MYSQL_PASSWORD: semaphore
+
+  semaphore:
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    image: semaphoreui/semaphore:latest
+    environment:
+      SEMAPHORE_DB_USER: semaphore
+      SEMAPHORE_DB_PASS: semaphore
+      SEMAPHORE_DB_HOST: mysql
+      SEMAPHORE_DB_PORT: 3306
+      SEMAPHORE_DB_DIALECT: mysql
+      SEMAPHORE_DB: semaphore
+      SEMAPHORE_PLAYBOOK_PATH: /tmp/semaphore/
+      SEMAPHORE_ADMIN_PASSWORD: semaphore
+      SEMAPHORE_ADMIN_NAME: admin
+      SEMAPHORE_ADMIN_EMAIL: 42nexus@proton.me
+      SEMAPHORE_ADMIN: admin
+      SEMAPHORE_ACCESS_KEY_ENCRYPTION: NW5+PVq097kppLzGxHoUhtcGFTybJey96LG6UJtLe5c=
+
+      # LDAP configuration
+      SEMAPHORE_LDAP_ACTIVATED: 'yes'
+      SEMAPHORE_LDAP_HOST: 172.16.0.150
+      SEMAPHORE_LDAP_PORT: '389'
+      SEMAPHORE_LDAP_NEEDTLS: 'no'
+      SEMAPHORE_LDAP_DN_BIND: 'cn=ldap_read,CN=Users,DC=mpibr,DC=local'
+      SEMAPHORE_LDAP_PASSWORD: 'OPpgs791'
+      SEMAPHORE_LDAP_DN_SEARCH: 'OU=MPIBR,DC=mpibr,DC=local'
+      SEMAPHORE_LDAP_SEARCH_FILTER: "(sAMAccountName=%s)"
+      SEMAPHORE_LDAP_GROUP_FILTER: "CN=IT,OU=Groups,OU=ITEC,OU=MPIBR,DC=mpibr,DC=local"
+
+      TZ: Europe/Berlin
+
+    depends_on:
+      - mysql
+
+volumes:
+  semaphore-mysql:
+  semaphore-postgres:
