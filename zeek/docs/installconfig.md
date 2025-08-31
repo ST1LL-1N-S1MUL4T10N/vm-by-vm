@@ -130,7 +130,7 @@ Save and exit.
 ### 11. Check Zeek Scripts Syntax
 
 ```bash
-zeekctl check
+sudo /opt/zeek/bin/zeekctl check
 ```
 
 Expected output:
