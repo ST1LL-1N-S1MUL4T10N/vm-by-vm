@@ -143,7 +143,7 @@ scripts are ok
 ### 12. Deploy Zeek
 
 ```bash
-sudo zeekctl deploy
+sudo /opt/zeek/bin/zeekctl deploy
 ```
 
 ---
