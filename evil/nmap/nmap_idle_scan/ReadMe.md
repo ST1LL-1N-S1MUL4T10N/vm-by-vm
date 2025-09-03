@@ -27,7 +27,7 @@ sudo nmap --script ipidseq.nse 10.10.2.31
 ### 3. Perform an idle scan using the zombie host
 
 ```bash
-sudo nmap -Pn -sI 10.10.2.31 10.10.41.11
+sudo nmap -Pn -sI 10.10.2.31 10.0.0.1
 ```
 
 - Uses the zombie host to scan the target without sending packets directly from your machine.
