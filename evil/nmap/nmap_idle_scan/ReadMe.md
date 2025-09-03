@@ -1,4 +1,6 @@
 
+<img width="638" height="152" alt="idledump" src="https://github.com/user-attachments/assets/1bdc247c-15ef-40be-a15b-c1d05ccb02e7" />
+
 ---
 
 ### 1. Capture traffic from the zombie host
@@ -36,7 +38,7 @@ sudo nmap -Pn -sI 10.10.2.31 10.10.41.11
 
 ## 1. Objective
 
-The purpose of this exercise is to perform an idle scan using Nmap to enumerate open TCP ports on a target host (10.10.41.11) without sending packets directly from the attacker host. A "zombie" host (10.10.2.31) is leveraged to remain stealthy.
+The purpose of this exercise is to perform an idle scan using Nmap to enumerate open TCP ports on a target host (10.0.0.1) without sending packets directly from the attacker host. A "zombie" host (10.10.2.31) is leveraged to remain stealthy.
 
 ---
 
@@ -77,7 +79,7 @@ Conclusion:
 ### Step 2: Run Idle Scan
 
 ```bash
-sudo nmap -Pn -sI 10.10.2.31 10.10.41.11
+sudo nmap -Pn -sI 10.10.2.31 10.0.0.1
 ```
 
 Explanation:
