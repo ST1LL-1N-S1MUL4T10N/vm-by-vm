@@ -1,6 +1,7 @@
 https://securitylearns.wordpress.com/2013/03/12/idle-scan-using-nmap
 
 https://elhacker.info/Cursos/Advanced%20Ethical%20Hacking%20-%20Network%20and%20Web%20PenTesting/Part%20II%20-%20Network%20and%20Web%20PenTesting/1.%20Network%20Scanning%2C%20Network%20Establishment%2C%20Web%20Vulnerabilities%20Exploitation/5.1%20Stealth_Idle_Scan.pdf
+
 ---
 
 <img width="638" height="152" alt="idledump" src="https://github.com/user-attachments/assets/1bdc247c-15ef-40be-a15b-c1d05ccb02e7" />
