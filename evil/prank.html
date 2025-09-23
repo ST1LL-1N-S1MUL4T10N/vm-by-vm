@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="de" xml:lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Startseite | rwb-essen</title>
+    <link rel="shortcut icon" href="https://www.rwb-essen.de/moodleneu/theme/image.php/boost/theme/1751546224/favicon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .navbar { background-color: #fff; padding: 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ccc; }
+        .navbar a { text-decoration: none; color: #000; margin-left: 10px; }
+        .drawer { background-color: #f5f5f5; padding: 10px; width: 250px; }
+        .main-content { padding: 20px; text-align: center; }
+        .fake-login { display: none; text-align: center; margin-top: 100px; }
+        .fake-login h1 { color: #d60000; font-size: 3em; }
+        .fake-login p { font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">
+            <img src="https://www.rwb-essen.de/moodleneu/pluginfile.php/1/core_admin/logocompact/300x300/1751546224/rwb-mini-logo.png" alt="rwb-essen" style="height:40px;">
+        </div>
+        <div class="nav-links">
+            <a href="#">Startseite</a>
+            <a href="#" id="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <h1>Willkommen auf der Moodleplattform des Rheinisch-Westfälischen Berufkollegs!</h1>
+        <p>Ein paar Infos für Moodle-Einsteiger:</p>
+        <ul style="text-align:left; max-width:600px; margin:0 auto;">
+            <li>Anmeldung erfolgt mit den IServ-Zugangsdaten.</li>
+            <li>Benutzer in der Gruppe RWB-Kollegium können Kurse anlegen.</li>
+            <li>Die Moodle-App URL: https://www.rwb-essen.de/moodleneu</li>
+        </ul>
+        <p><img src="https://www.rwb-essen.de/moodleneu/pluginfile.php/2/course/section/67/Dscn0125b%20%281%29.jpg?time=1601546481905" alt="Bild der Schule" width="300"></p>
+    </div>
+
+    <!-- Fake VERARSCHT! Page -->
+    <div class="fake-login" id="fake-login">
+        <h1>VERARSCHT!</h1>
+    </div>
+
+    <script>
+        document.getElementById('login-btn').addEventListener('click', function(e){
+            e.preventDefault(); // prevent default link action
+            document.querySelector('.main-content').style.display = 'none'; // hide main content
+            document.getElementById('fake-login').style.display = 'block'; // show fake page
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html dir="ltr" lang="de" xml:lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Startseite | rwb-essen</title>
+    <link rel="shortcut icon" href="https://www.rwb-essen.de/moodleneu/theme/image.php/boost/theme/1751546224/favicon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .navbar { background-color: #fff; padding: 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ccc; }
+        .navbar a { text-decoration: none; color: #000; margin-left: 10px; }
+        .drawer { background-color: #f5f5f5; padding: 10px; width: 250px; }
+        .main-content { padding: 20px; text-align: center; }
+        .fake-login { display: none; text-align: center; margin-top: 100px; }
+        .fake-login h1 { color: #d60000; font-size: 3em; }
+        .fake-login p { font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">
+            <img src="https://www.rwb-essen.de/moodleneu/pluginfile.php/1/core_admin/logocompact/300x300/1751546224/rwb-mini-logo.png" alt="rwb-essen" style="height:40px;">
+        </div>
+        <div class="nav-links">
+            <a href="#">Startseite</a>
+            <a href="#" id="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <h1>Willkommen auf der Moodleplattform des Rheinisch-Westfälischen Berufkollegs!</h1>
+        <p>Ein paar Infos für Moodle-Einsteiger:</p>
+        <ul style="text-align:left; max-width:600px; margin:0 auto;">
+            <li>Anmeldung erfolgt mit den IServ-Zugangsdaten.</li>
+            <li>Benutzer in der Gruppe RWB-Kollegium können Kurse anlegen.</li>
+            <li>Die Moodle-App URL: https://www.rwb-essen.de/moodleneu</li>
+        </ul>
+        <p><img src="https://www.rwb-essen.de/moodleneu/pluginfile.php/2/course/section/67/Dscn0125b%20%281%29.jpg?time=1601546481905" alt="Bild der Schule" width="300"></p>
+    </div>
+
+    <!-- Fake VERARSCHT! Page -->
+    <div class="fake-login" id="fake-login">
+        <h1>VERARSCHT!</h1>
+    </div>
+
+    <script>
+        document.getElementById('login-btn').addEventListener('click', function(e){
+            e.preventDefault(); // prevent default link action
+            document.querySelector('.main-content').style.display = 'none'; // hide main content
+            document.getElementById('fake-login').style.display = 'block'; // show fake page
+        });
+    </script>
+</body>
+</html>
